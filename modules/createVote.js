@@ -18,9 +18,11 @@ export const createVote = () => {
           })
             .then(res => res.json())
             .then(nbVotes => {
-              const compteur = document.getElementById(`${type}Compt_${postId}`)
-              compteur.textContent = nbVotes
+             if(nbVotes.error) {console.log('retour vote : ', nbVotes.error)}
+             else {const compteur = document.getElementById(`${type}Compt_${postId}`)
+              compteur.textContent = nbVotes }
             })
+            .catch(console.error)
         })
       }
     })
